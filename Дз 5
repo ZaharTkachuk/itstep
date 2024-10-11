@@ -1,0 +1,53 @@
+class Animal:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def sound(self):
+        print(f"{self.name} видає звук!")
+
+    def info(self):
+        print(f"{self.name} — тварина, вік: {self.age} років.")
+
+
+class Insect(Animal):
+    def __init__(self, name, age, wings):
+        super().__init__(name, age)
+        self.wings = wings
+
+    def fly(self):
+        if self.wings > 0:
+            print(f"{self.name} літає завдяки своїм {self.wings} крилам!")
+        else:
+            print(f"{self.name} не має крил і не може літати.")
+
+    def info(self):
+        print(f"{self.name} — комаха, вік: {self.age} років, крил: {self.wings}.")
+
+
+class Butterfly(Insect):
+    def __init__(self, name, age, wings, color):
+        super().__init__(name, age, wings)
+        self.color = color
+
+    def display(self):
+        print(f"{self.name} — метелик із {self.color} крилами.")
+
+    def info(self):
+        print(f"{self.name} — метелик, вік: {self.age} років, колір крил: {self.color}.")
+
+
+animal = Animal("Кіт", 5)
+animal.sound()
+animal.info()
+
+insect = Insect("Жук", 1, 2)
+insect.sound()
+insect.fly()
+insect.info()
+
+butterfly = Butterfly("Монарх", 2, 4, "помаранчево-чорний")
+butterfly.sound()
+butterfly.fly()
+butterfly.display()
+butterfly.info()
