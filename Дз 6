@@ -1,0 +1,15 @@
+import colorama
+from colorama import Fore, Back, Style
+
+# Ініціалізуємо Colorama для роботи в консолі
+colorama.init()
+
+# Показуємо основні атрибути та методи
+print(dir(colorama))
+print(dir(Fore))
+print(dir(Back))
+print(dir(Style))
+
+print(Fore.RED + "This is red text" + Fore.RESET)
+print(Back.GREEN + "This has green background" + Back.RESET)
+print(Style.BRIGHT + "Bright style text" + Style.RESET_ALL)
