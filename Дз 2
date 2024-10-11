@@ -1,0 +1,56 @@
+import random
+
+class Pet:
+    def __init__(self, name, pet_type):
+        self.name = name
+        self.pet_type = pet_type
+        self.hunger = 50
+        self.happiness = 50
+        self.energy = 50
+
+    def feed(self):
+        if self.hunger > 0:
+            self.hunger -= 10
+            self.happiness += 5
+            print(f"{self.name} поїв(ла). Рівень голоду тепер: {self.hunger}. Щастя: {self.happiness}.")
+        else:
+            print(f"{self.name} не голодний(а).")
+
+    def sleep(self):
+        if self.energy < 100:
+            self.energy += 20
+            self.hunger += 5
+            print(f"{self.name} поспав(ла). Енергія: {self.energy}. Голод: {self.hunger}.")
+        else:
+            print(f"{self.name} не хоче спати, повний енергії!")
+
+    def play(self):
+        if self.energy > 10:
+            self.happiness += 10
+            self.energy -= 15
+            self.hunger += 5
+            print(f"{self.name} грає! Щастя: {self.happiness}, Енергія: {self.energy}, Голод: {self.hunger}.")
+        else:
+            print(f"{self.name} занадто втомлений(а), щоб грати. Йому потрібен відпочинок.")
+
+    def status(self):
+        print(f"Ім'я: {self.name}, Тип: {self.pet_type}")
+        print(f"Голод: {self.hunger}, Щастя: {self.happiness}, Енергія: {self.energy}")
+
+    def random_event(self):
+        event = random.choice(["годування", "сон", "гра"])
+        if event == "годування":
+            self.feed()
+        elif event == "сон":
+            self.sleep()
+        else:
+            self.play()
+
+my_pet = Pet("Барсик", "котик")
+
+my_pet.status()
+my_pet.feed()
+my_pet.play()
+my_pet.sleep()
+my_pet.random_event()
+my_pet.status()
