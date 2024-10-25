@@ -1,0 +1,32 @@
+import datetime
+import requests
+from bs4 import BeautifulSoup
+import time
+
+def fetch_temperature():
+    try:
+        url = "https://pogoda.meta.ua/ua/Poltavska/Kremenchutskyi/Kremenchuk/"
+        headers = {"User-Agent": "Ваш User-Agent"}
+        response = requests.get(url, headers=headers)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        temperature = soup.find('div', class_='temperature').text
+        return temperature
+    except Exception as e:
+        print(f"Помилка при отриманні температури: {e}")
+        return None
+
+def add_data_to_file():
+    temperature = fetch_temperature()
+    if temperature:
+        now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        data_line = f"{now}, {temperature}\n"
+        try:
+            with open("weather_data.txt", "a") as file:
+                file.write(data_line)
+            print(f"Додано: {data_line.strip()}")
+        except Exception as e:
+            print(f"Помилка запису у файл: {e}")
+
+while True:
+    add_data_to_file()
+    time.sleep(1800)
